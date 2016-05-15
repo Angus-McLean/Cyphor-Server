@@ -1,0 +1,36 @@
+{
+  "name": "Cyphor-Server",
+  "description": "A platform independent encryption app to keep your information private from the corporations we love (but don't trust).",
+  "version": "0.0.1",
+  "author": "angus@cyphor.io",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {
+	  "async" : "*",
+	  "body-parser" : "*",
+	  "chalk" : "*",
+	  "compression" : "*",
+	  "connect-flash" : "*",
+	  "connect-mongo" : "~0.4.1",
+	  "consolidate" : "*",
+	  "cookie-parser" : "*",
+	  "express" : "*",
+	  "express-session" : "*",
+	  "glob": "~4.0.5",
+	  "helmet" : "*",
+	  "lodash" : "*",
+	  "method-override" : "*",
+	  "mongoose" : "~3.8.8",
+	  "morgan" : "*",
+	  "nodemailer" : "*",
+	  "passport" : "*",
+	  "passport-facebook" : "*",
+	  "passport-github" : "*",
+	  "passport-google-oauth" : "*",
+	  "passport-linkedin" : "*",
+	  "passport-local" : "*",
+	  "passport-twitter" : "*"
+  }
+}
