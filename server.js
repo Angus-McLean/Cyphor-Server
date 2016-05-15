@@ -17,6 +17,8 @@ var db = mongoose.connect(config.db, function(err) {
 	if (err) {
 		console.error(chalk.red('Could not connect to MongoDB!'));
 		console.log(chalk.red(err));
+	} else {
+		console.log('Connected to MongodDB at '+config.db);
 	}
 });
 
@@ -33,4 +35,4 @@ app.listen(config.port);
 exports = module.exports = app;
 
 // Logging initialization
-console.log('MEAN.JS application started on port ' + config.port);
+console.log('Cyphor-Server started on port ' + config.port);
