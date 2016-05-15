@@ -1,26 +1,25 @@
-FROM dockerfile/nodejs
+FROM node
 
-WORKDIR /home
+ARG DB_URI
 
-# Install Mean.JS Prerequisites
+# Install Server Prerequisites
 # RUN npm install -g grunt-cli
 # RUN npm install -g bower
 
-# Pull latest from repo
-RUN git clone https://github.com/Angus-McLean/Cyphor-Server.git
-
-# Install Mean.JS packages
-# ADD package.json /home/Cyphor-Server/package.json
-RUN npm install
+# Install Server packages
+# ADD package.json /tmp/package.json
+# RUN cd /tmp && npm install
+# RUN mkdir -p /www/Cyphor-Server && cp -a /tmp/node_modules /www/Cyphor-Server/
 
 # Make everything available for start
-ADD . /home/Cyphor-Server
+WORKDIR /www/Cyphor-Server
+ADD . /www/Cyphor-Server
 
 # currently only works for development
 ENV NODE_ENV development
-ENV DB_ID mongodb://192.168.99.100:27017/test
+ENV DB_URI $DB_URI
 
 # Port 3001 for server
 # Port 35729 for livereload
 EXPOSE 3001 35729
-CMD ["node server.js"]
+CMD node server.js
