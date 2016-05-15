@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://127.0.0.1:27017/test',
+	db: process.env.DB_IP || 'mongodb://127.0.0.1:27017/cyphor-dev',
 	app: {
 		title: 'Cyphor - Development Environment'
 	},
