@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.DB_URI || 'mongodb://localhost:27017/cyphor-dev',
+	db: process.env.DB_URI || 'mongodb://localhost/cyphor-dev',
 	app: {
 		title: 'Cyphor - Development Environment'
 	},
