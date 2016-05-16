@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGO_PORT_27017_TCP_ADDR || 'mongodb://localhost/cyphor-dev',
+	db: process.env.DB_URI || 'mongodb://mongodb:27017/cyphor-dev',
 	app: {
 		title: 'Cyphor - Development Environment'
 	},
