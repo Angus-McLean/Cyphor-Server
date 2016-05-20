@@ -4,7 +4,6 @@ FROM node
 # RUN npm install -g grunt-cli
 # RUN npm install -g bower
 
-<<<<<<< HEAD
 # Install Mean.JS packages
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
