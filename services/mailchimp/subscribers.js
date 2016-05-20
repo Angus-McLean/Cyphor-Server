@@ -14,7 +14,8 @@ function addToList(listId, emailAddr, subscriberObj) {
 		body : {
 			email_address : emailAddr,
 			status : (subscriberObj && subscriberObj.status) || 'subscribed'
-		}
+		},
+		json : true
 	}, function (err, resp, body) {
 		if(err){
 			console.error(chalk.red('Failed to sync email '+emailAddr));
