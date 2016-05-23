@@ -34,11 +34,4 @@ FormModel.pre('save', function(next) {
 	next();
 });
 
-/**
- * Hook a pre save method to sync with mailchimp db
- */
-FormModel.pre('save', function(next) {
-	mailchimp.subscribers.addToList('12a516a5f0', this.formData.email);
-});
-
 mongoose.model('forms', FormModel);

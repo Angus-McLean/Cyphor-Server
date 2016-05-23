@@ -40,6 +40,10 @@ module.exports = {
 				pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD',
 				apikey: '1d40c84b0e283812f15ef67b4fcaf645-us13'
 			}
+		},
+		lists: {
+			Beta : '',
+			test : '12a516a5f0'
 		}
 	}
 };
