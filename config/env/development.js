@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: process.env.DB_URI || 'mongodb://127.0.0.1:27017/cyphor-dev',
+	db: process.env.DB_URI || 'mongodb://mongodb:27017/cyphor-dev',
 	app: {
 		title: 'Cyphor - Development Environment'
 	},
@@ -40,6 +40,10 @@ module.exports = {
 				pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD',
 				apikey: '1d40c84b0e283812f15ef67b4fcaf645-us13'
 			}
+		},
+		lists: {
+			Beta : '',
+			test : '12a516a5f0'
 		}
 	}
 };
