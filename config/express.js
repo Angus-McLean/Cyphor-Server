@@ -68,19 +68,19 @@ module.exports = function(db) {
 	if (process.env.NODE_ENV === 'development') {
 		// Enable logger (morgan)
 		app.use(morgan('dev'));
-		
+
 		app.use(function(req, res, next) {
-			console.log('disabling CORS')
+			//console.log('disabling CORS')
 			res.header("Access-Control-Allow-Origin", "*");
 			res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization, Content-Length,");
-			
+
 			if ('OPTIONS' === req.method) {
 				res.send(200);
 			} else {
 				next();
 			}
 		});
-		
+
 
 
 		// Disable views cache
