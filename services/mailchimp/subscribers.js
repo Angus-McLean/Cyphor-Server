@@ -5,21 +5,27 @@ var request = require('request'),
 	chalk = require('chalk');
 
 function addToList(listId, emailAddr, subscriberObj) {
-	request.post({
-		url: 'https://usX.api.mailchimp.com/3.0/lists/'+listId+'/members',
+	request({
+		method: 'post',
+		url: config.mailer.options.baseURL + 'lists/' + listId + '/members',
 		headers : {
-			'content-type' : 'application/json',
+			'Content-Type' : 'application/json',
 			'Authorization' : 'apikey '+config.mailer.options.auth.apikey
 		},
 		body : {
 			email_address : emailAddr,
-			status : (subscriberObj && subscriberObj.status) || 'subscribed'
-		}
+			status : 'subscribed',
+			merge_fields : subscriberObj.formData
+		},
+		json : true
 	}, function (err, resp, body) {
 		if(err){
 			console.error(chalk.red('Failed to sync email '+emailAddr));
 			console.log(chalk.red(err));
+		} else {
+			console.log(chalk.green('Synced with mailchimp : '+body.email_address));
 		}
+
 	});
 }
 

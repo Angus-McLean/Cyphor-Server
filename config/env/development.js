@@ -35,11 +35,16 @@ module.exports = {
 		from: process.env.MAILER_FROM || 'MAILER_FROM',
 		options: {
 			service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
+			baseURL : 'https://us13.api.mailchimp.com/3.0/',
 			auth: {
 				user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
 				pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD',
 				apikey: '1d40c84b0e283812f15ef67b4fcaf645-us13'
 			}
+		},
+		lists: {
+			beta : '4fa54016d4',
+			test : '12a516a5f0'
 		}
 	}
 };
