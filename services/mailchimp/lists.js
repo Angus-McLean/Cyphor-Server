@@ -50,7 +50,7 @@ function getListByName(listName, cb) {
 }
 
 module.exports = {
-	subscribers : {
+	lists : {
 		getAllLists : getAllLists,
 		getMembers : getMembers,
 		getListByName : getListByName
