@@ -9,5 +9,6 @@ var _ = require('lodash');
  * Extend user's controller
  */
 module.exports = _.extend(
-	require('./mailchimp/subscribers.js')
+	require('./mailchimp/subscribers.js'),
+	require('./mailchimp/lists.js')
 );

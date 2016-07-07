@@ -50,6 +50,6 @@ exports.subscribe = function(req, res) {
 	    }
 	});
 
-	mailchimp.subscribers.addToList(config.mailer.lists.test, formsObj.formData.email);
-	
+	mailchimp.subscribers.addToList(config.mailer.lists.beta, formsObj.formData.email, formsObj);
+
 };
