@@ -7,14 +7,15 @@ var request = require('request'),
 function addToList(listId, emailAddr, subscriberObj) {
 	request({
 		method: 'post',
-		url: 'https://us13.api.mailchimp.com/3.0/lists/'+listId+'/members',
+		url: config.mailer.options.baseURL + 'lists/' + listId + '/members',
 		headers : {
 			'Content-Type' : 'application/json',
 			'Authorization' : 'apikey '+config.mailer.options.auth.apikey
 		},
 		body : {
 			email_address : emailAddr,
-			status : 'subscribed'
+			status : 'subscribed',
+			merge_fields : subscriberObj.formData
 		},
 		json : true
 	}, function (err, resp, body) {
@@ -24,7 +25,7 @@ function addToList(listId, emailAddr, subscriberObj) {
 		} else {
 			console.log(chalk.green('Synced with mailchimp : '+body.email_address));
 		}
-		
+
 	});
 }
 
