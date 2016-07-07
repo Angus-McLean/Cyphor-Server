@@ -51,6 +51,8 @@ function getListByName(listName, cb) {
 
 module.exports = {
 	subscribers : {
-		addToList : addToList
+		getAllLists : getAllLists,
+		getMembers : getMembers,
+		getListByName : getListByName
 	}
 };
