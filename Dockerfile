@@ -27,4 +27,3 @@ EXPOSE 3001
 
 # Run application
 CMD pm2 start server.js -i 2 --no-daemon
-#CMD node server.js
