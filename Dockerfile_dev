@@ -23,4 +23,5 @@ EXPOSE 3001
 EXPOSE 8080
 
 # Run application
-CMD /bin/bash -c "node-inspector & nodemon -L --debug server.js"
+#CMD /bin/bash -c "node-inspector & nodemon --debug-brk server.js"
+CMD /bin/bash -c "nodemon -L server.js"

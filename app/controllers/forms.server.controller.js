@@ -11,7 +11,6 @@ var _ = require('lodash'),
 	mailchimp = require('./../../services/mailchimp.js');
 
 exports.contact = function(req, res) {
-    console.log(req.body);
 
     var formsObj = new formsModel();
 
@@ -28,11 +27,11 @@ exports.contact = function(req, res) {
 	        return res.status(200).send(formsObj);
 	    }
 	});
+
+	mailchimp.subscribers.addToList(config.mailer.lists.beta, formsObj.formData.email, formsObj);
 };
 
-
 exports.subscribe = function(req, res) {
-    console.log(req.body);
 
     var formsObj = new formsModel();
 
@@ -51,5 +50,4 @@ exports.subscribe = function(req, res) {
 	});
 
 	mailchimp.subscribers.addToList(config.mailer.lists.beta, formsObj.formData.email, formsObj);
-
 };

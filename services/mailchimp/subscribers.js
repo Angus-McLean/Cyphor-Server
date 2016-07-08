@@ -4,7 +4,45 @@ var request = require('request'),
 	config = require('./../../config/config.js'),
 	chalk = require('chalk');
 
-function addToList(listId, emailAddr, subscriberObj) {
+function convertDocToMailChimp(doc) {
+	switch (doc.formType) {
+		case 'subscribe':
+			return subscribeToMC(doc);
+		case 'contact':
+			return contactToMC(doc);
+		default:
+			return null;
+	}
+}
+
+function subscribeToMC (subscriberDoc) {
+	return {
+		email_address : subscriberDoc.formData.email,
+		status : 'subscribed',
+		merge_fields : {
+			PSEUDONYM : (subscriberDoc.formData && subscriberDoc.formData.pseudonym),
+			FORMTYPE : 'subscribe'
+		}
+	};
+}
+
+function contactToMC (contactDoc) {
+	return {
+		email_address : contactDoc.formData.email,
+		status : 'subscribed',
+		merge_fields : {
+			PSEUDONYM : (contactDoc.formData && (contactDoc.formData.pseudonym || contactDoc.formData.name)),
+			FORMTYPE : 'contact'
+		}
+	};
+}
+
+function addToList(listId, emailAddr, subscriberDoc) {
+
+	var mailChimpDoc = convertDocToMailChimp(subscriberDoc);
+	console.log('mailChimpDoc', mailChimpDoc);
+	if(!emailAddr || !mailChimpDoc) return;
+
 	request({
 		method: 'post',
 		url: config.mailer.options.baseURL + 'lists/' + listId + '/members',
@@ -12,11 +50,7 @@ function addToList(listId, emailAddr, subscriberObj) {
 			'Content-Type' : 'application/json',
 			'Authorization' : 'apikey '+config.mailer.options.auth.apikey
 		},
-		body : {
-			email_address : emailAddr,
-			status : 'subscribed',
-			merge_fields : subscriberObj.formData
-		},
+		body : mailChimpDoc,
 		json : true
 	}, function (err, resp, body) {
 		if(err){
@@ -28,7 +62,6 @@ function addToList(listId, emailAddr, subscriberObj) {
 
 	});
 }
-
 
 module.exports = {
 	subscribers : {
