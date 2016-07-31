@@ -6,6 +6,7 @@ module.exports = function(app) {
 
 	app.route('/forms/contact').post(formsController.contact);
 	app.route('/forms/subscribe').post(formsController.subscribe);
-	
-	
+	app.route('/forms/bugreport').post(formsController.bugreport);
+	app.route('/forms/feedback').post(formsController.feedback);
+
 };

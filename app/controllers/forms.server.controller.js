@@ -51,3 +51,43 @@ exports.subscribe = function(req, res) {
 
 	mailchimp.subscribers.addToList(config.mailer.lists.beta, formsObj.formData.email, formsObj);
 };
+
+exports.bugreport = function(req, res) {
+    console.log(req.body);
+
+    var formsObj = new formsModel();
+
+    formsObj.user = req.user;
+    formsObj.formType = 'bugreport';
+
+    formsObj.formData = req.body;
+
+    formsObj.save(function(err, savedObj){
+	    if(err){
+	        return res.status(400).send(err);
+	    } else {
+	        return res.status(200).send(savedObj);
+	    }
+	});
+
+};
+
+exports.feedback = function(req, res) {
+    console.log(req.body);
+
+    var formsObj = new formsModel();
+
+    formsObj.user = req.user;
+    formsObj.formType = 'feedback';
+
+    formsObj.formData = req.body;
+
+    formsObj.save(function(err, savedObj){
+	    if(err){
+	        return res.status(400).send(err);
+	    } else {
+	        return res.status(200).send(savedObj);
+	    }
+	});
+
+};
