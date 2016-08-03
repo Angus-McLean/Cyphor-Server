@@ -28,14 +28,12 @@ var UserSchema = new Schema({
 	firstName: {
 		type: String,
 		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your first name']
+		default: ''
 	},
 	lastName: {
 		type: String,
 		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+		default: ''
 	},
 	displayName: {
 		type: String,
@@ -46,12 +44,11 @@ var UserSchema = new Schema({
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+		unique: 'Email needs to be unique',
 	},
 	username: {
 		type: String,
-		unique: 'testing error message',
-		required: 'Please fill in a username',
 		trim: true
 	},
 	password: {
@@ -59,6 +56,21 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
+	tokens: {
+		personal : String,
+		available: [{
+			type: String
+		}],
+		used: [{
+			type: String
+		}]
+	},
+	referral : {
+		type: String
+	},
+	invited_users: [{
+		type: String
+	}],
 	salt: {
 		type: String
 	},
@@ -71,7 +83,7 @@ var UserSchema = new Schema({
 	roles: {
 		type: [{
 			type: String,
-			enum: ['user', 'admin']
+			enum: ['user', 'alpha-tester', 'alpha-invite']
 		}],
 		default: ['user']
 	},
@@ -99,6 +111,15 @@ UserSchema.pre('save', function(next) {
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}
+
+	next();
+});
+
+/**
+ * Hook a pre save method to set username as email address
+ */
+UserSchema.pre('save', function(next) {
+	this.username = this.email;
 
 	next();
 });
