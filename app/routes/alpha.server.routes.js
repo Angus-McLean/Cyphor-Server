@@ -6,4 +6,5 @@ module.exports = function(app) {
 
 	app.route('/alpha/config').get(alphaController.config);
 
+	app.route('/alpha/invite').get(alphaController.invite);
 };
